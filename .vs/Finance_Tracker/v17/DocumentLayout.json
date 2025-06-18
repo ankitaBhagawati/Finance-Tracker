@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{99921C95-9D9F-4600-A361-A9CB8A072204}|Finance_Tracker\\Finance_Tracker.csproj|c:\\users\\91995\\onedrive\\desktop\\project\\mca major project\\finance_tracker\\finance_tracker\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{99921C95-9D9F-4600-A361-A9CB8A072204}|Finance_Tracker\\Finance_Tracker.csproj|solutionrelative:finance_tracker\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99921C95-9D9F-4600-A361-A9CB8A072204}|Finance_Tracker\\Finance_Tracker.csproj|c:\\users\\91995\\onedrive\\desktop\\project\\mca major project\\finance_tracker\\finance_tracker\\wwwroot\\js\\budget.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{99921C95-9D9F-4600-A361-A9CB8A072204}|Finance_Tracker\\Finance_Tracker.csproj|solutionrelative:finance_tracker\\wwwroot\\js\\budget.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99921C95-9D9F-4600-A361-A9CB8A072204}|Finance_Tracker\\Finance_Tracker.csproj|c:\\users\\91995\\onedrive\\desktop\\project\\mca major project\\finance_tracker\\finance_tracker\\wwwroot\\js\\expense.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{99921C95-9D9F-4600-A361-A9CB8A072204}|Finance_Tracker\\Finance_Tracker.csproj|solutionrelative:finance_tracker\\wwwroot\\js\\expense.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99921C95-9D9F-4600-A361-A9CB8A072204}|Finance_Tracker\\Finance_Tracker.csproj|c:\\users\\91995\\onedrive\\desktop\\project\\mca major project\\finance_tracker\\finance_tracker\\views\\budget\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{99921C95-9D9F-4600-A361-A9CB8A072204}|Finance_Tracker\\Finance_Tracker.csproj|solutionrelative:finance_tracker\\views\\budget\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\Finance_Tracker\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Finance_Tracker\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\Finance_Tracker\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Finance_Tracker\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-23T20:11:24.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "expense.js",
+              "DocumentMoniker": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\Finance_Tracker\\wwwroot\\js\\expense.js",
+              "RelativeDocumentMoniker": "Finance_Tracker\\wwwroot\\js\\expense.js",
+              "ToolTip": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\Finance_Tracker\\wwwroot\\js\\expense.js",
+              "RelativeToolTip": "Finance_Tracker\\wwwroot\\js\\expense.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-23T18:26:27.399Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "budget.js",
+              "DocumentMoniker": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\Finance_Tracker\\wwwroot\\js\\budget.js",
+              "RelativeDocumentMoniker": "Finance_Tracker\\wwwroot\\js\\budget.js",
+              "ToolTip": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\Finance_Tracker\\wwwroot\\js\\budget.js",
+              "RelativeToolTip": "Finance_Tracker\\wwwroot\\js\\budget.js",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAgwF8AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-23T18:08:05.979Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\Finance_Tracker\\Views\\Budget\\Index.cshtml",
+              "RelativeDocumentMoniker": "Finance_Tracker\\Views\\Budget\\Index.cshtml",
+              "ToolTip": "C:\\Users\\91995\\OneDrive\\Desktop\\Project\\MCA major project\\Finance_Tracker\\Finance_Tracker\\Views\\Budget\\Index.cshtml",
+              "RelativeToolTip": "Finance_Tracker\\Views\\Budget\\Index.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-23T17:40:25.283Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

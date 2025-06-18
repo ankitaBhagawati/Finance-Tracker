@@ -1,0 +1,112 @@
+﻿<style>
+
+    .btn-custom {
+        background-color: #9ebeef;
+        color: black;
+        display: table-cell;
+        border-radius: 8px;
+    }
+
+    .btn-custom:hover {
+            background-color: #eaf1fb;
+     }
+
+    .dx-datagrid .dx-link {
+        color: #9ebeef !important;
+    }
+
+    .h2 {
+        font-size: 2rem;
+        font-family: 'Segoe UI', sans-serif;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid #ddd;
+        display: inline-block;
+        padding-bottom: 0.3rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: background-color 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .dx-datagrid-rowsview .dx-row:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .dx-datagrid-rowsview .dx-row:hover {
+        background-color: #e8f0fe;
+    }
+
+</style>
+
+<div class="container py-4">
+    <h2 class="mb-4 text-center">Smart Spending Starts Here</h2>
+
+
+    <div class="mb-3">
+        <button id="addExpenseBtn" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#addExpenseModal">Add Expense</button>
+
+    </div>
+
+    <div id="expenseGrid"></div>
+
+
+    <!-- Add Expense Modal -->
+    <div class="modal fade" id="addExpenseModal" tabindex="-1" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addExpenseModalLabel">Add Expense</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addExpenseForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="expenseTitle" class="form-label">Title</label>
+                            <input type="text" placeholder="Enter Title" class="form-control" id="expenseTitle" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="expenseCategory" class="form-label">Category</label>
+                            <select class="form-select" id="expenseCategory" required>
+                                <!-- Categories will be dynamically loaded here -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="expenseAmount" class="form-label">Amount</label>
+                            <input type="number" placeholder="Enter Amount" step="0.01" class="form-control" id="expenseAmount" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="expenseDate" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="expenseDate" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="expenseNote" class="form-label">Notes</label>
+                            <input type="text" placeholder="Enter Notes" class="form-control" id="expenseNote" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add Expense</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="demo-container">
+    <div id="pie"></div>
+</div>
+
+@section Scripts {
+    <script src="~/js/expense.js"></script>
+}
