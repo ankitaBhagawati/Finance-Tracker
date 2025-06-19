@@ -60,31 +60,31 @@
 --END;
 
 
---CREATE PROCEDURE sp_Users
---    @sp_Operation NVARCHAR(10),
---    @user_id INT = NULL,
---    @name NVARCHAR(100) = NULL,
---    @salary DECIMAL(10,2) = NULL
---AS
---BEGIN
---    IF @sp_Operation = 'Add'
---    BEGIN
---        INSERT INTO Users (name, salary)
---        VALUES (@name, @salary);
---    END
---    ELSE IF @sp_Operation = 'Update'
---    BEGIN
---        UPDATE Users
---        SET name = @name,
---            salary = @salary
---        WHERE user_id = @user_id;
---    END
---    ELSE IF @sp_Operation = 'Delete'
---    BEGIN
---        DELETE FROM Users
---        WHERE user_id = @user_id;
---    END
---END;
+CREATE PROCEDURE sp_Users
+   @sp_Operation NVARCHAR(10),
+   @user_id INT = NULL,
+   @name NVARCHAR(100) = NULL,
+   @salary DECIMAL(10,2) = NULL
+AS
+BEGIN
+   IF @sp_Operation = 'Add'
+   BEGIN
+       INSERT INTO Users (name, salary)
+       VALUES (@name, @salary);
+   END
+   ELSE IF @sp_Operation = 'Update'
+   BEGIN
+       UPDATE Users
+       SET name = @name,
+           salary = @salary
+       WHERE user_id = @user_id;
+   END
+   ELSE IF @sp_Operation = 'Delete'
+   BEGIN
+       DELETE FROM Users
+       WHERE user_id = @user_id;
+   END
+END;
 
 
 
