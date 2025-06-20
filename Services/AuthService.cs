@@ -22,4 +22,14 @@ public class AuthService : IAuthService
 
         return created;
     }
+    public bool SignIn(SignInDTO dto)
+    {
+        string hashedPassword = Argon2.Hash(dto.Password);
+        var authenticate = _userRepository.SignIn(dto.Email, hashedPassword);
+        if (authenticate == null)
+        {
+            return false;
+        }
+        return true;
+    }
 }

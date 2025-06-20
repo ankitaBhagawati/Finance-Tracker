@@ -7,4 +7,5 @@ namespace Services.Repositories.Interfaces;
 public interface IAuthService
 {
     bool Signup(SignupDTO dto);
+    bool SignIn(SignInDTO dto);
 }

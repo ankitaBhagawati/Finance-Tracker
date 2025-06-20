@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Models.DTOs;
 using Services.Repositories.Interfaces;
 
@@ -15,15 +14,10 @@ public class AuthController : ApiControllerBase
         _authService = authService;
     }
 
-    [HttpGet]
-    public IActionResult Signup()
+    [HttpPost]
+    [Route("SignUp")]
+    public IActionResult Signup([FromBody] SignupDTO dto)
     {
-        var dto = new SignupDTO
-        {
-            Email = "ankitaa@gmail.com",
-            Name = "pagal",
-            Password = "nhi h"
-        };
         var created = _authService.Signup(dto);
 
         if (!created)
@@ -31,5 +25,20 @@ public class AuthController : ApiControllerBase
             return StatusCode(500, "You're not worthy");
         }
         return Ok();
+    }
+
+    [HttpPost]
+    [Route("SignIn")]
+    public IActionResult SignIn([FromBody] SignInDTO dto)
+    {
+        var authenticate = _authService.SignIn(dto);
+        if (authenticate)
+        {
+            return Ok();    
+        }
+        else
+        {
+            return StatusCode(500, "You're SUS");
+        }
     }
 }
