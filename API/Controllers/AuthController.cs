@@ -6,7 +6,6 @@ namespace API.Controllers;
 
 public class AuthController : ApiControllerBase
 {
-
     private readonly IAuthService _authService;
 
     public AuthController(IAuthService authService)
@@ -31,14 +30,13 @@ public class AuthController : ApiControllerBase
     [Route("SignIn")]
     public IActionResult SignIn([FromBody] SignInDTO dto)
     {
-        var authenticate = _authService.SignIn(dto);
-        if (authenticate)
+        var token = _authService.SignIn(dto);
+        if (token == null)
         {
-            return Ok();    
+            return StatusCode(401, "You're not allowed");
         }
-        else
-        {
-            return StatusCode(500, "You're SUS");
-        }
+
+        Response.Headers.Append("Authorization", "Bearer " + token);
+        return Ok();
     }
 }

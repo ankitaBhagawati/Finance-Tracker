@@ -1,8 +1,8 @@
 using System;
 using Dapper;
+using Isopoh.Cryptography.Argon2;
 using Models;
 using Models.DTOs;
-using Org.BouncyCastle.Crypto.Generators;
 using Services.Repositories.Interfaces;
 
 
@@ -30,12 +30,12 @@ public class UserRepository(IDbService dbService) : IUserRepository
 
             return true;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return false;
         }
     }
-    public User SignIn(string email, string password)
+    public User? SignIn(string email, string password)
     {
         try
         {
@@ -49,7 +49,7 @@ public class UserRepository(IDbService dbService) : IUserRepository
             if (user == null)
                 return null;
 
-            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.Password);
+            bool isPasswordValid = Argon2.Verify(user.Password, password);
             return isPasswordValid ? user : null;
         }
         catch
