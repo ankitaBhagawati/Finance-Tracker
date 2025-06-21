@@ -5,7 +5,6 @@ using Models;
 using Models.DTOs;
 using Services.Repositories.Interfaces;
 
-
 namespace Services.Repositories;
 
 public class UserRepository(IDbService dbService) : IUserRepository
@@ -19,14 +18,17 @@ public class UserRepository(IDbService dbService) : IUserRepository
             using var conn = _dbService.GetConnection();
             conn.Open();
 
-            var result = conn.Query(@"
+            var result = conn.Query(
+                @"
             EXEC sp_CreateUser @name = @Name, @email = @Email, @password = @Password
-        ", new
-            {
-                Name = name,
-                Email = email,
-                Password = password,
-            });
+        ",
+                new
+                {
+                    Name = name,
+                    Email = email,
+                    Password = password,
+                }
+            );
 
             return true;
         }
@@ -35,6 +37,7 @@ public class UserRepository(IDbService dbService) : IUserRepository
             return false;
         }
     }
+
     public User? SignIn(string email, string password)
     {
         try
@@ -42,9 +45,11 @@ public class UserRepository(IDbService dbService) : IUserRepository
             using var conn = _dbService.GetConnection();
             conn.Open();
 
-            var user = conn.QueryFirstOrDefault<User>(@"
+            var user = conn.QueryFirstOrDefault<User>(
+                @"
             SELECT * FROM Users WHERE Email = @Email",
-                new { Email = email });
+                new { Email = email }
+            );
 
             if (user == null)
                 return null;
@@ -57,5 +62,4 @@ public class UserRepository(IDbService dbService) : IUserRepository
             return null;
         }
     }
-
 }
