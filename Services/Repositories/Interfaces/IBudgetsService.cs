@@ -8,7 +8,7 @@ namespace Finance_Tracker.Interfaces
         Task<Budgets> GetBudgetById(int id);
 
         Task<bool> CreateBudget(Budgets budget);
-        Task<bool> UpdateBudget(Budgets budget);
+        Task<bool> UpdateBudget(int id, Budgets budget);
         Task<bool> DeleteBudget(int id);
     }
 }

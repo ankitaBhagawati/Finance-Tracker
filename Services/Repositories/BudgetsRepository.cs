@@ -12,7 +12,6 @@ namespace Services.Repositories
         //Will do once tables/SP  are created
         public Task<IEnumerable<Budgets>> GetAllBudgetByUserId(int user_id)
         {
-
             throw new NotImplementedException();
         }
 
@@ -20,16 +19,18 @@ namespace Services.Repositories
         {
             throw new NotImplementedException();
         }
+
         public Task<bool> CreateBudget(Budgets budget)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateBudget(Budgets budget) 
+        public Task<bool> UpdateBudget(int id, Budgets budget)
         {
             throw new NotImplementedException();
         }
-        public Task<bool> DeleteBudget(int id) 
+
+        public Task<bool> DeleteBudget(int id)
         {
             throw new NotImplementedException();
         }
