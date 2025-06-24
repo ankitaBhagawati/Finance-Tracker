@@ -30,18 +30,17 @@ public class BudgetController : ApiControllerBase
         return Ok(result);
     }
     [HttpPost]
-    [Route("CreateOrUpdateBudget/{budget}/{isCreated}")]
-   public async Task<ActionResult> CreateOrUpdateBudget([FromBody] Budgets budget, [FromQuery] bool isCreated)
+    [Route("CreateBudget/{budget}/")]
+   public async Task<ActionResult> CreateOrUpdateBudget([FromBody] Budgets budget)
     {
-        bool result;
-        if (isCreated)
-        {
-            result =  await _budgetsService.CreateBudget(budget);
-        }
-        else
-        {
-            result = await _budgetsService.UpdateBudget(budget);
-        }
+        bool result = await _budgetsService.CreateBudget(budget);
+        return Ok(result);
+    }
+    [HttpPost]
+    [Route("UpdateBudget/{budget}")]
+    public async Task<ActionResult> UpdateBudget([FromBody] Budgets budget)
+    {
+        bool result = await _budgetsService.UpdateBudget(budget); 
         return Ok(result);
     }
 
