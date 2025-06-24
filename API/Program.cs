@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using System.Text;
 using Finance_Tracker.Interfaces;
 using Finance_Tracker.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -5,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using Services;
 using Services.Repositories;
 using Services.Repositories.Interfaces;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder
     {
         jwtOptions.TokenValidationParameters = new TokenValidationParameters
         {
+            NameClaimType = ClaimTypes.NameIdentifier,
             ValidateAudience = false,
             ValidateIssuer = false,
             ValidateIssuerSigningKey = true,
@@ -30,6 +32,7 @@ builder
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddTransient<IDbService, DbService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
