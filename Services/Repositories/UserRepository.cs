@@ -19,14 +19,14 @@ public class UserRepository(IDbService dbService) : IUserRepository
             conn.Open();
 
             var result = conn.Query(
-                @"
-            EXEC sp_CreateUser @name = @Name, @email = @Email, @password = @Password
+                @"EXEC @SP_User @name = @Name, @email = @Email, @password = @Password
         ",
                 new
                 {
                     Name = name,
                     Email = email,
                     Password = password,
+                    SP_User = Constant.UserSP,
                 }
             );
 

@@ -51,4 +51,11 @@ public class BudgetController : ApiControllerBase
         bool result = await _budgetsService.UpdateBudget(id, budget);
         return Ok(result);
     }
+    [HttpDelete]
+    [Route("id")]
+    public async Task<ActionResult> DeleteBudget(int id)
+    {
+        bool result= await _budgetsService.DeleteBudget(id);
+        return Ok(result);
+    }
 }

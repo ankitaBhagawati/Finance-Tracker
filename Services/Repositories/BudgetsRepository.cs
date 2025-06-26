@@ -1,6 +1,10 @@
-﻿using Finance_Tracker.Interfaces;
+﻿using Azure;
+using Dapper;
+using Finance_Tracker.Interfaces;
 using Finance_Tracker.Models;
+using Models;
 using Services.Repositories.Interfaces;
+using System.Data;
 
 namespace Services.Repositories
 {
@@ -8,31 +12,135 @@ namespace Services.Repositories
     {
         private readonly IDbService _dbService = dbService;
 
-        //DB operations not completed
-        //Will do once tables/SP  are created
-        public Task<IEnumerable<Budgets>> GetAllBudgetByUserId(int user_id)
+        public async Task<IEnumerable<Budgets>> GetAllBudgetByUserId(int user_id)
         {
-            throw new NotImplementedException();
+
+            IEnumerable<Budgets> result = new List<Budgets>();
+            try
+            {
+                using var connection = _dbService.GetConnection();
+                string query = @"select
+								budget_id,
+                                user_name,
+                                category_name,
+                                amount,
+                                month,
+                                year
+								 from " + Constant.BudgetView;
+                result = await connection.QueryAsync<Budgets>(query);
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public Task<Budgets> GetBudgetById(int id)
+        public async Task<Budgets> GetBudgetById(int id)
         {
-            throw new NotImplementedException();
+            Budgets? result = new Budgets();
+            try
+            {
+                using var connection = _dbService.GetConnection();
+                string query = @"select
+								budget_id,
+                                user_name,
+                                category_name,
+                                amount,
+                                month,
+                                year
+								 from "+ Constant.BudgetView +
+                                " Where budget_id = @Id";
+                result = await connection.QueryFirstOrDefaultAsync<Budgets>(query, new { Id = id });
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public Task<bool> CreateBudget(Budgets budget)
+        public async Task<bool> CreateBudget(Budgets budget)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using var conn = _dbService.GetConnection();
+                await conn.OpenAsync();
+
+                var result = await conn.ExecuteAsync(
+                    Constant.BudgetSP,  
+                    new
+                    {
+                        sp_Operation = Constant.Add,
+                        user_id = budget.user_id,
+                        category_id = budget.category_id,
+                        amount = budget.amount,
+                        month = budget.month,
+                        year = budget.year
+                    },
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public Task<bool> UpdateBudget(int id, Budgets budget)
+
+        public async Task<bool> UpdateBudget(int id, Budgets budget)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using var conn = _dbService.GetConnection();
+                await conn.OpenAsync();
+
+                var result = await conn.ExecuteAsync(
+                    Constant.BudgetSP,
+                    new
+                    {
+                        sp_Operation = Constant.Update,
+                        budget_id = id,
+                        category_id = budget.category_id,
+                        amount = budget.amount,
+                        month = budget.month,
+                        year = budget.year
+                    },
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public Task<bool> DeleteBudget(int id)
+        public async Task<bool> DeleteBudget(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using var conn = _dbService.GetConnection();
+                await conn.OpenAsync();
+
+                var result = await conn.ExecuteAsync(
+                    Constant.BudgetSP,
+                    new
+                    {
+                        sp_Operation = Constant.Delete,
+                        budget_id = id
+                    },
+                    commandType: CommandType.StoredProcedure
+                );
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
     }
 }

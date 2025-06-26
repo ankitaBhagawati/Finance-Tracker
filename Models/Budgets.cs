@@ -15,5 +15,6 @@ namespace Finance_Tracker.Models
         public double amount { get; set; }
         public int month { get; set; }
         public int year { get; set; }
+        public bool isActive { get; set; }
     }
 }
