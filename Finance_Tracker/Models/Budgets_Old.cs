@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Finance_Tracker.Models
 {
-    public class Budgets
+    public class Budgets_Old
     {
         public int budget_id { get; set; }
         public int user_id { get; set; }

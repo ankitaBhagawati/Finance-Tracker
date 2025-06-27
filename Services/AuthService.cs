@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using Isopoh.Cryptography.Argon2;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Models;
@@ -14,9 +15,15 @@ public class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
     private readonly IConfiguration _configuration;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public AuthService(IUserRepository userRepository, IConfiguration configuration)
+    public AuthService(
+        IUserRepository userRepository,
+        IConfiguration configuration,
+        IHttpContextAccessor httpContextAccessor
+    )
     {
+        _httpContextAccessor = httpContextAccessor;
         _userRepository = userRepository;
         _configuration = configuration;
     }
@@ -59,5 +66,22 @@ public class AuthService : IAuthService
         );
 
         return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+    public int GetUserID()
+    {
+        var x = _httpContextAccessor.HttpContext?.User;
+        var sub = _httpContextAccessor
+            .HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)
+            ?.Value;
+        if (sub == null)
+        {
+            throw new UnauthorizedAccessException("User ID not found in token.");
+        }
+        if (!int.TryParse(sub, out int userId))
+        {
+            throw new UnauthorizedAccessException("Invalid User ID in token.");
+        }
+        return userId;
     }
 }
