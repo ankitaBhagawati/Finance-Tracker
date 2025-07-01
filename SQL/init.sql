@@ -6,3 +6,13 @@ CREATE TABLE Users (
    CONSTRAINT PK_id PRIMARY KEY (id),
    CONSTRAINT UQ_email UNIQUE (email)
 );
+
+CREATE PROCEDURE [dbo].[sp_CreateUser]
+   @name NVARCHAR(100),
+   @email NVARCHAR(250),
+   @password NVARCHAR(255)
+AS
+BEGIN
+	INSERT INTO Users (name, email, password)
+    VALUES (@name, @email, @password);
+END;

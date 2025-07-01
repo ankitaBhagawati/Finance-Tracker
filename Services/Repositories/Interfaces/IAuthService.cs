@@ -8,4 +8,5 @@ public interface IAuthService
 {
     bool Signup(SignupDTO dto);
     string? SignIn(SignInDTO dto);
+    int GetUserID();
 }

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Services 
-builder.Services.AddScoped<IBudgetsService, BudgetsService>();
+builder.Services.AddScoped<IBudgetsService, BudgetsService_Old>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<ITransactionsService, TransactionsService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
