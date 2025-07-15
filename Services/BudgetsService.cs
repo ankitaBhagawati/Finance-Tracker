@@ -1,6 +1,6 @@
-﻿using Finance_Tracker.Interfaces;
-using Finance_Tracker.Models;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Models;
+using Services.Repositories.Interfaces;
 
 namespace Services
 {

@@ -26,6 +26,8 @@ public class AuthService : IAuthService
         _httpContextAccessor = httpContextAccessor;
         _userRepository = userRepository;
         _configuration = configuration;
+        _httpContextAccessor = httpContextAccessor;
+
     }
 
     public bool Signup(SignupDTO dto)

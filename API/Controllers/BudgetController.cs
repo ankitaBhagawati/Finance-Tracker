@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using Finance_Tracker.Interfaces;
-using Finance_Tracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using Services.Repositories.Interfaces;
+using System.Collections;
 
 namespace API.Controllers;
 

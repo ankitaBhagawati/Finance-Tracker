@@ -39,6 +39,8 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IBudgetsService, BudgetsService>();
 builder.Services.AddTransient<IBudgetsRepository, BudgetsRepository>();
+builder.Services.AddTransient<ITransactionService, TransactionService>();
+builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
 
 var app = builder.Build();
 

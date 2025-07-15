@@ -1,7 +1,5 @@
 ﻿using Azure;
 using Dapper;
-using Finance_Tracker.Interfaces;
-using Finance_Tracker.Models;
 using Models;
 using Services.Repositories.Interfaces;
 using System.Data;

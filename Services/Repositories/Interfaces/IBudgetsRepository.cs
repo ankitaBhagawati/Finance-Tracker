@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Finance_Tracker.Models;
 
-namespace Finance_Tracker.Interfaces
+namespace Services.Repositories.Interfaces
 {
     public interface IBudgetsRepository
     {

@@ -12,14 +12,19 @@ namespace Models
             //Table
             UserTable = "Users",
             BudgetTable = "Budgets",
+            TransactionTable= "Transactions",
 
             //Store Procedure
             UserSP = "sp_CreateUser",
             BudgetSP = "sp_Budgets",
+            TransactionSP = "sp_Transactions",
 
 
             //Views
             BudgetView= "v_Budgets",
+            TransactionView= "v_Transactions",
+
+
             //Operations
             SpOperation = "sp_operation",
             Add = "ADD",

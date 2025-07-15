@@ -58,7 +58,7 @@ BEGIN
     ELSE IF @sp_Operation = 'Update'
     BEGIN
         UPDATE Budgets
-        SET amount = @amount,
+        SET  category_id=@category_id,, amount = @amount,
             month = @month,
             year = @year
         WHERE budget_id = @budget_id;
