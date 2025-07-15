@@ -17,8 +17,13 @@ public class AuthService : IAuthService
     private readonly IConfiguration _configuration;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public AuthService(IUserRepository userRepository, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+    public AuthService(
+        IUserRepository userRepository,
+        IConfiguration configuration,
+        IHttpContextAccessor httpContextAccessor
+    )
     {
+        _httpContextAccessor = httpContextAccessor;
         _userRepository = userRepository;
         _configuration = configuration;
         _httpContextAccessor = httpContextAccessor;
@@ -64,6 +69,7 @@ public class AuthService : IAuthService
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
+
     public int GetUserID()
     {
         var x = _httpContextAccessor.HttpContext?.User;
