@@ -62,4 +62,25 @@ public class UserRepository(IDbService dbService) : IUserRepository
             return null;
         }
     }
+
+    public User? GetUser(int id)
+    {
+        try
+        {
+            using var conn = _dbService.GetConnection();
+            conn.Open();
+
+            var user = conn.QueryFirstOrDefault<User>(
+                @"
+            SELECT TOP(1) * FROM Users WHERE Id = @Id",
+                new { Id = id }
+            );
+
+            return user;
+        }
+        catch
+        {
+            return null;
+        }
+    }
 }

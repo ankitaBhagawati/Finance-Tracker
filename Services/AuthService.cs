@@ -72,7 +72,6 @@ public class AuthService : IAuthService
 
     public int GetUserID()
     {
-        var x = _httpContextAccessor.HttpContext?.User;
         var sub = _httpContextAccessor
             .HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)
             ?.Value;
@@ -85,5 +84,11 @@ public class AuthService : IAuthService
             throw new UnauthorizedAccessException("Invalid User ID in token.");
         }
         return userId;
+    }
+
+    public User? GetUser()
+    {
+        var userId = GetUserID();
+        return _userRepository.GetUser(userId);
     }
 }

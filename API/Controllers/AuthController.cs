@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTOs;
 using Services.Repositories.Interfaces;
@@ -23,7 +24,7 @@ public class AuthController : ApiControllerBase
         {
             return StatusCode(500, "You're not worthy");
         }
-        return Ok();
+        return Created();
     }
 
     [HttpPost]
@@ -38,5 +39,19 @@ public class AuthController : ApiControllerBase
 
         Response.Headers.Append("Authorization", "Bearer " + token);
         return Ok();
+    }
+
+    [Authorize]
+    [HttpGet]
+    [Route("me")]
+    public IActionResult GetCurrentUser()
+    {
+        var user = _authService.GetUser();
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(user);
     }
 }

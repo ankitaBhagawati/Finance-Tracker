@@ -41,6 +41,19 @@ builder.Services.AddTransient<IBudgetsService, BudgetsService>();
 builder.Services.AddTransient<IBudgetsRepository, BudgetsRepository>();
 builder.Services.AddTransient<ITransactionService, TransactionService>();
 builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowAll",
+        policy =>
+        {
+            policy
+                .AllowAnyHeader()
+                .AllowAnyOrigin()
+                .WithExposedHeaders(["Authorization", "Access-Control-Allow-Origin"]);
+        }
+    );
+});
 
 var app = builder.Build();
 
@@ -52,6 +65,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
 app.UseRouting();
 
