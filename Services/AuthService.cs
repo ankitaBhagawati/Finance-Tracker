@@ -30,13 +30,25 @@ public class AuthService : IAuthService
 
     }
 
-    public bool Signup(SignupDTO dto)
+    public SignupResult Signup(SignupDTO dto)
     {
-        // TODO: validation
+        //Checks if the email already exists in our db
+        if (_userRepository.isExists(dto.Email))
+        {
+            return new SignupResult
+            {
+                Success = false,
+                Message = "User already exists"
+            };
+        }
         string hashedPassword = Argon2.Hash(dto.Password);
-        var created = _userRepository.SaveUser(dto.Email, dto.Name, hashedPassword);
+        bool created = _userRepository.SaveUser(dto.Email, dto.Name, hashedPassword);
 
-        return created;
+        return new SignupResult
+        {
+            Success = created,
+            Message = created ? "User created" : "Failed to create user"
+        };
     }
 
     public string? SignIn(SignInDTO dto)
@@ -69,7 +81,6 @@ public class AuthService : IAuthService
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
-
     public int GetUserID()
     {
         var sub = _httpContextAccessor

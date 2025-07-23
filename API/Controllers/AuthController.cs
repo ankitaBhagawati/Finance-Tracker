@@ -18,13 +18,17 @@ public class AuthController : ApiControllerBase
     [Route("SignUp")]
     public IActionResult Signup([FromBody] SignupDTO dto)
     {
-        var created = _authService.Signup(dto);
+        var result = _authService.Signup(dto);
 
-        if (!created)
+        if (!result.Success)
         {
-            return StatusCode(500, "You're not worthy");
+            if (result.Message == "User already exists")
+                return BadRequest(result.Message);
+
+            return StatusCode(500, result.Message);
         }
-        return Created();
+
+        return Created("", result.Message);
     }
 
     [HttpPost]

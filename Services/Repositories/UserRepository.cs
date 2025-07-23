@@ -83,4 +83,26 @@ public class UserRepository(IDbService dbService) : IUserRepository
             return null;
         }
     }
+    public bool isExists(string email)
+    {
+        try
+        {
+            using var conn = _dbService.GetConnection();
+            conn.Open();
+            var user = conn.QueryFirstOrDefault<User>(@"Select TOP(1) * FROM Users WHERE email =@Email",
+                new { Email = email });
+            if (user == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+    }
 }
