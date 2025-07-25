@@ -18,12 +18,16 @@ public class AuthController : ApiControllerBase
     [Route("SignUp")]
     public IActionResult Signup([FromBody] SignupDTO dto)
     {
-        var created = _authService.Signup(dto);
+        var result = _authService.Signup(dto);
 
-        if (!created)
+        if (!result.Success)
         {
-            return StatusCode(500, "You're not worthy");
+            if (result.Code == 409)
+                return BadRequest();
+
+            return StatusCode(500);
         }
+
         return Created();
     }
 
@@ -34,11 +38,11 @@ public class AuthController : ApiControllerBase
         var token = _authService.SignIn(dto);
         if (token == null)
         {
-            return StatusCode(401, "You're not allowed");
+            return StatusCode(401);
         }
 
         Response.Headers.Append("Authorization", "Bearer " + token);
-        return Ok();
+        return Created();
     }
 
     [Authorize]

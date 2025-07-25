@@ -6,7 +6,7 @@ namespace Services.Repositories.Interfaces;
 
 public interface IAuthService
 {
-    bool Signup(SignupDTO dto);
+    SignupResult Signup(SignupDTO dto);
     string? SignIn(SignInDTO dto);
     int GetUserID();
     User? GetUser();
