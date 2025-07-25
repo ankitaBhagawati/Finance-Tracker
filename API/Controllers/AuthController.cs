@@ -22,13 +22,13 @@ public class AuthController : ApiControllerBase
 
         if (!result.Success)
         {
-            if (result.Message == "User already exists")
-                return BadRequest(result.Message);
+            if (result.Code == 409)
+                return BadRequest();
 
-            return StatusCode(500, result.Message);
+            return StatusCode(500);
         }
 
-        return Created("", result.Message);
+        return Created();
     }
 
     [HttpPost]
@@ -38,11 +38,11 @@ public class AuthController : ApiControllerBase
         var token = _authService.SignIn(dto);
         if (token == null)
         {
-            return StatusCode(401, "You're not allowed");
+            return StatusCode(401);
         }
 
         Response.Headers.Append("Authorization", "Bearer " + token);
-        return Ok();
+        return Created();
     }
 
     [Authorize]

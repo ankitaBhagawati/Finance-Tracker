@@ -38,17 +38,29 @@ public class AuthService : IAuthService
             return new SignupResult
             {
                 Success = false,
-                Message = "User already exists"
+                Code = 409,
             };
         }
         string hashedPassword = Argon2.Hash(dto.Password);
-        bool created = _userRepository.SaveUser(dto.Email, dto.Name, hashedPassword);
-
-        return new SignupResult
+        int created = _userRepository.SaveUser(dto.Email, dto.Name, hashedPassword);
+        if (created < 1)
         {
-            Success = created,
-            Message = created ? "User created" : "Failed to create user"
-        };
+            return new SignupResult
+            {
+                Success = false,
+                Code = 500
+            };
+        }
+        else
+        {
+            return new SignupResult
+            {
+                Success = true,
+                Code = 201
+            };
+
+        }
+        
     }
 
     public string? SignIn(SignInDTO dto)
