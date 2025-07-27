@@ -23,7 +23,7 @@ public class AuthController : ApiControllerBase
         if (!result.Success)
         {
             if (result.Code == 409)
-                return BadRequest();
+                return Conflict();
 
             return StatusCode(500);
         }
