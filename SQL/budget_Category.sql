@@ -40,6 +40,31 @@ REFERENCES [dbo].[Users] ([id])
 GO
 
 
+Create procedure sp_Category
+  @sp_Operation NVARCHAR(10),
+  @Category_Id int, 
+  @Category_Name nvarchar(500)
+  AS
+  BEGIN 
+  If @sp_Operation='ADD'
+  BEGIN
+  INSERT INTO Categories(category_name) VALUES (@Category_Name)
+  END 
+  if @sp_Operation='UPDATE'
+  BEGIN
+  Update Categories 
+  set category_name= @Category_Name
+  where category_id= @Category_Id
+  END
+  IF @sp_Operation='DELETE'
+  BEGIN
+  UPDATE Categories
+  Set isActive= 0 
+  WHERE category_id=@Category_Id
+  END
+  END
+
+
 CREATE PROCEDURE sp_Budgets
     @sp_Operation NVARCHAR(10),
     @budget_id INT = NULL,

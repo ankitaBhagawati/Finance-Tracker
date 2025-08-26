@@ -17,3 +17,15 @@ BEGIN
     VALUES (@name, @email, @password);
 END;
 
+ALTER PROCEDURE [dbo].[sp_CreateUser]
+   @name NVARCHAR(100),
+   @email NVARCHAR(250),
+   @password NVARCHAR(255),
+   @id int OUTPUT
+AS
+BEGIN
+	INSERT INTO Users (name, email, password)
+    VALUES (@name, @email, @password);
+
+	Set @id= SCOPE_IDENTITY();
+END;
