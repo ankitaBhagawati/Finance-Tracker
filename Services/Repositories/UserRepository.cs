@@ -70,7 +70,7 @@ public class UserRepository(IDbService dbService) : IUserRepository
 
             var user = conn.QueryFirstOrDefault<User>(
                 @"
-            SELECT TOP(1) Email, Name FROM Users WHERE Id = @Id",
+            SELECT TOP(1) Id, Email, Name FROM Users WHERE Id = @Id",
                 new { Id = id }
             );
 

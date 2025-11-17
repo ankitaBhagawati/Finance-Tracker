@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace API.Controllers;
 
-[Authorize]
+//[Authorize]
 public class BudgetController : ApiControllerBase
 {
     private readonly IBudgetsService _budgetsService;
@@ -21,9 +21,9 @@ public class BudgetController : ApiControllerBase
 
     [HttpGet]
     [Route("")]
-    public async Task<ActionResult<IEnumerable>> GetAllBudget()
+    public async Task<ActionResult<IEnumerable>> GetAllBudget(int userId)
     {
-        var userId = _authService.GetUserID();
+       // var userId = _authService.GetUserID();
         var result = await _budgetsService.GetAllBudgetByUserId(userId);
         return Ok(result);
     }

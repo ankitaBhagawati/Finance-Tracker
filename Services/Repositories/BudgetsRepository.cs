@@ -20,6 +20,7 @@ namespace Services.Repositories
                 string query = @"select
 								budget_id,
                                 user_name,
+                                category_id,
                                 category_name,
                                 amount,
                                 month,
