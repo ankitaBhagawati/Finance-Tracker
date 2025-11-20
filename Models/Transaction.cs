@@ -9,6 +9,7 @@ namespace Models
     public class Transaction
     {
         public int transaction_id { get; set; }
+        public string? transaction_name { get; set; }
         public int user_id { get; set; }
         public string? user_name { get; set; }
         public int category_id { get; set; }

@@ -22,12 +22,13 @@ namespace Services.Repositories
             using var connection = _dbService.GetConnection();
             string query = @"select
                                     transaction_id,
+                                    transaction_name,
                                     user_name,
                                     category_name,
                                     amount,
                                     description,
                                     transaction_date
-                                 from " + Constant.TransactionView;
+                                    from " + Constant.TransactionView + " Where isActive = 1 and user_id=" + user_id;
             result = await connection.QueryAsync<Transaction>(query);
             return result;
         }
@@ -71,11 +72,11 @@ namespace Services.Repositories
                 new
                 {
                     sp_Operation = Constant.Add,
+                    transaction_name= transaction.transaction_name,
                     user_id = transaction.user_id,
                     category_id = transaction.category_id,
                     amount = transaction.amount,
-                    description = transaction.description,
-                    transaction_date = transaction.transaction_date
+                    description = transaction.description
                 },
                 commandType: CommandType.StoredProcedure
             );
@@ -100,10 +101,10 @@ namespace Services.Repositories
                 {
                     sp_Operation = Constant.Update,
                     transaction_id = id,
+                    transaction_name = transaction.transaction_name,
                     category_id = transaction.category_id,
                     amount = transaction.amount,
-                    description = transaction.description,
-                    transaction_date = transaction.transaction_date
+                    description = transaction.description
                 },
                 commandType: CommandType.StoredProcedure
             );

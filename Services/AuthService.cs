@@ -93,19 +93,36 @@ public class AuthService : IAuthService
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
+    //public int GetUserID()
+    //{
+    //    //var sub = _httpContextAccessor
+    //    //    .HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)
+    //    //    ?.Value;
+    //    var sub = _httpContextAccessor.HttpContext?.User?
+    //    .FindFirst("id")?.Value;
+
+    //    if (sub == null)
+    //    {
+    //          throw new UnauthorizedAccessException("User ID not found in token.");
+    //    }
+    //    if (!int.TryParse(sub, out int userId))
+    //    {
+    //        throw new UnauthorizedAccessException("Invalid User ID in token.");
+    //    }
+    //    return userId;
+    //}
     public int GetUserID()
     {
-        var sub = _httpContextAccessor
-            .HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)
-            ?.Value;
-        if (sub == null)
-        {
+        var userIdString =
+            _httpContextAccessor.HttpContext?.User?.FindFirst("id")?.Value
+            ?? _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (userIdString == null)
             throw new UnauthorizedAccessException("User ID not found in token.");
-        }
-        if (!int.TryParse(sub, out int userId))
-        {
+
+        if (!int.TryParse(userIdString, out int userId))
             throw new UnauthorizedAccessException("Invalid User ID in token.");
-        }
+
         return userId;
     }
 

@@ -48,17 +48,15 @@ builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(
-        "AllowAll",
-        policy =>
+    options.AddPolicy("AllowAll",
+        builder =>
         {
-            policy
-                .AllowAnyHeader()
-                .AllowAnyOrigin()
-                .WithExposedHeaders(["Authorization", "Access-Control-Allow-Origin"]);
-        }
-    );
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();   // <-- MUST ALLOW DELETE + PUT
+        });
 });
+
 
 var app = builder.Build();
 
@@ -71,6 +69,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 app.UseCors("AllowAll");
+
 
 app.UseRouting();
 

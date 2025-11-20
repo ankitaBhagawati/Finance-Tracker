@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace API.Controllers;
 
-[Authorize]
+//[Authorize]
 public class ExpenseController : ApiControllerBase
 {
     private readonly ITransactionService _transactionService;
@@ -22,9 +22,8 @@ public class ExpenseController : ApiControllerBase
     }
     #region Expense
     [HttpGet]
-    public async Task<ActionResult<IEnumerable>> GetAllExpenses()
+    public async Task<ActionResult<IEnumerable>> GetAllExpenses(int userId)
     {
-        var userId = _authService.GetUserID();
         var result = await _transactionService.GetAllTransactionByUserId(userId);
         return Ok(result);
     }
@@ -50,13 +49,13 @@ public class ExpenseController : ApiControllerBase
         return Ok(result);
     }
 
-    [HttpDelete]
-    [Route("id")]
-    public async Task<ActionResult> DeleteExpense(int id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteExpense(int id)
     {
-        bool result = await _transactionService.DeleteTransaction(id);
+        var result = await _transactionService.DeleteTransaction(id);
         return Ok(result);
     }
+
     #endregion
 
 
