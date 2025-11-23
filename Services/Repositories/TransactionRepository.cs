@@ -23,7 +23,9 @@ namespace Services.Repositories
             string query = @"select
                                     transaction_id,
                                     transaction_name,
+                                    user_id,
                                     user_name,
+                                    category_id,
                                     category_name,
                                     amount,
                                     description,

@@ -45,7 +45,7 @@ public class CategoryController : ApiControllerBase
         return Ok(result);
     }
     [HttpDelete]
-    [Route("id")]
+    [Route("{id}")]
     public async Task<ActionResult<bool>> DeleteCategory(int id)
     {
         var result = await _categoryService.DeleteCategory(id);
